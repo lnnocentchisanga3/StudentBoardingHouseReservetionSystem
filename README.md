@@ -1,0 +1,2 @@
+# StudentBoardingHouseReservetionSystem
+The system would be an online system which allows the user ' student'  to search for suitable accommodation according to their budget and  residential area preference. Furthermore the system would also allow the user,  'landlord', to add accommodation offers. Users would also be able to interact while  negotiating their accommodation needs and payment requirements if intereste
