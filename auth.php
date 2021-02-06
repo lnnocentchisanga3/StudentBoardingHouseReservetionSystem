@@ -3,8 +3,8 @@
     require 'conn.php';
 
     $email = $_POST['email'];
+    $fullname = $_POST['fullname'];
     $password = $_POST['password'];
-    $cpassword = $_POST['cpassword'];
 
     
 
@@ -12,12 +12,12 @@
     if(isset($_POST['register']))
     { 
 
-      if ($password == $cpassword)
+      if ($password != null)
     {
        $register = mysqli_num_rows(mysqli_query($con, "SELECT * FROM `users` WHERE `email`='$email'"));
         if($register == 0)
         {
-            $insert = mysqli_query($con,"INSERT INTO `users` (`email`,`password`,`photo`,`fullname`) VALUES ('$email','$password','','')");
+            $insert = mysqli_query($con,"INSERT INTO `users` (`email`,`password`,`photo`,`fullname`) VALUES ('$email','$password','','$fullname')");
             if($insert)
                 redirectFunct();
             else
@@ -43,6 +43,7 @@
 
          $_SESSION['email'] = $userData['email'];
          $_SESSION['password'] = $userData['password'];
+         $_SESSION['fullname'] = $userData['fullname'];
 
         goToDashboard();
 

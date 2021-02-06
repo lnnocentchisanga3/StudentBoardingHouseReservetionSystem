@@ -1,11 +1,11 @@
 <?php
 require 'conn.php';
 session_start();
-$space = $_POST['house'];
+$space = $_POST['close'];
 
 $book = mysqli_query($con, "SELECT * FROM book WHERE userid = '$_SESSION[email]'");
 $count = mysqli_num_rows($book);
-if ($count == 0) {
+if ($count != 0) {
 	
 $fetch = mysqli_query($con, "SELECT capacity FROM house WHERE owner = '$space'");
 $row = mysqli_fetch_array($fetch);
@@ -18,16 +18,16 @@ if ($num == 0)
 }
 else
 {
-$num_sub = $num - 1;
+$num_sub = $num + 1;
 
 $update = mysqli_query($con, "UPDATE house SET capacity = '$num_sub' WHERE owner = '$space'");
 
 	if ($update) {
-		$book = mysqli_query($con, "INSERT INTO book(userid,owner) VALUES('$_SESSION[email]','$space')");
+		$book = mysqli_query($con, "DELETE FROM book WHERE userid = '$_SESSION[email]'");
 		if ($book) {
-			echo "Room Reserved";
+			echo "Room Reserved Cancled";
 		}else{
-			echo "Room not Reserved";
+			echo "Room Reserved Not Cancled";
 		}
 	}else{
 		echo "Failed.......there was an error";
@@ -37,7 +37,7 @@ $update = mysqli_query($con, "UPDATE house SET capacity = '$num_sub' WHERE owner
 
 }else
 {
-echo "You have Already Reserved a Room";
+echo "You don't have a Reserved Room";
 }
 
 

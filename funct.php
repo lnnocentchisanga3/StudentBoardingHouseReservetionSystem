@@ -11,7 +11,7 @@ header("location: ./index.php");
 
 function redirectFunctPwdSame()
 {
-header("location: ./signup.php?action=pwdnotsame");
+header("location: ./signup.php?action=pwdisnull");
 }
 
 function goToIndex()

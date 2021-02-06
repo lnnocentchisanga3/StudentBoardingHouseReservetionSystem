@@ -21,9 +21,14 @@ if (isset($_GET['email'])) {
 		</div>
 		<div class="col-md-6 py-2">
 			<ul class="navbar-nav">
-				<li class="nav-item py-2"><h5>Boarding House Name</h5> '.$row['house_name'].'</li>
-				<li class="nav-item py-2"><h5>LandLord </h5>'.$row['owner'].'</li>
+				<li class="nav-item py-2"><h5>Boarding House Name</h5> '.$row['house_name'].'</li>';
+				$name = mysqli_query($con, "SELECT fullname FROM users WHERE email = '$row[owner]'");
+				$fname = mysqli_fetch_array($name);
+				echo '
+					<li class="nav-item py-2"><h5>LandLord </h5>'.$fname['fullname'].'</li>
 				<li class="nav-item py-2">
+					';
+				echo'
 				<fieldset>
 				<legend>Description</legend>
 				'.$row['description'].'

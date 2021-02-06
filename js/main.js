@@ -116,19 +116,66 @@
 
 })(jQuery);
 
+/*get name*/
+function getName(){
+	var myName = document.getElementById('nameToPerson').innerText;
+	document.getElementById('nameTo').innerHTML = myName;
+}
+/*end get name*/
 /*message box*/
 
 document .querySelector(".openChatBtn") .addEventListener("click", openForm);
    document.querySelector(".close").addEventListener("click", closeForm);
+
    function openForm(str) {
       document.querySelector(".openChat").style.display = "block";
 
       document.getElementById('email').value = str;
+      getName();
    }
    function closeForm() {
       document.querySelector(".openChat").style.display = "none";
 }
 /*End Message box*/
+
+
+/*delete msgs*/
+function deleteMsg(del){
+	var xhttp;
+
+	xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function(){
+
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById('msg1234').innerHTML = this.responseText;
+		}
+	};
+
+	xhttp.open("GET" , "delete.php?del="+del, true);
+	xhttp.send();
+	document.getElementById('messageFinale').innerHTML = "";
+}
+/*end delete msg*/
+
+/*delete msgs*/
+function deleteHouse(del){
+	var xhttp;
+
+	xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function(){
+
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById('msg1234').innerHTML = this.responseText;
+		}
+	};
+
+	xhttp.open("GET" , "deleteHouse.php?delHouse="+del, true);
+	xhttp.send();
+	document.getElementById('messageFinale').innerHTML = "";
+}
+/*end delete msg*/
 
 
 /*BH Details*/
@@ -194,9 +241,29 @@ function showNotify()
     };
     xhttp.open("GET", "getNotifyAll.php?query", true);
     xhttp.send();
+
+     document.getElementById('msg12345').innerHTML = "You have a new message";
 }
 
 /*End Notification*/
+
+/*Notification All*/
+
+function showMessages() 
+{
+  var xhttp;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("messagesAll").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "getAllMasseges.php?queryAll", true);
+    xhttp.send();
+}
+
+/*End Notification All*/
 
 /*Message sending*/
 
@@ -209,7 +276,7 @@ function sendText() {
     xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function(){
       if (this.readyState == 4 && this.status == 200) {
-         alert(this.responseText);
+         document.getElementById('msg1234').innerHTML = "<span class='py-3'>"+this.responseText+"</span>";
       }
     };
    xhttp.open("POST","sendMsg.php", true);
@@ -236,6 +303,46 @@ function loadTable()
 	};
 
 	xhttp.open("GET", "posts.php", true);
+	xhttp.send();
+}
+
+/*End Table*/
+
+
+/*Table 2*/
+
+function loadTableBook() 
+{
+	let xhttp;
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		document.getElementById('posts').innerHTML = this.responseText;
+	}	
+	};
+
+	xhttp.open("GET", "houseBook.php", true);
+	xhttp.send();
+}
+
+/*End Table*/
+
+
+/*Table 3*/
+
+function loadTablePeople() 
+{
+	let xhttp;
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		document.getElementById('peopleUsers').innerHTML = this.responseText;
+	}	
+	};
+
+	xhttp.open("GET", "peopleUsers.php", true);
 	xhttp.send();
 }
 

@@ -84,10 +84,10 @@
 			<form method="POST" action="auth.php" class="bg-white col-md-8 offset-md-2 rounded">
 				<label class="mt-5">Email</label><br>
 				<input type="email" name="email" class="form-control" placeholder="email"><br>
-            <label>password</label><br>
-            <input type="password" name="password" class="form-control" placeholder="password"><br>
-				<label>Confirm password</label><br>
-				<input type="password" name="cpassword" class="form-control" placeholder="Confirm password"><br><br>
+            <label>Fullname</label><br>
+            <input type="text" name="fullname" class="form-control" placeholder="fullname"><br>
+				<label>password</label><br>
+				<input type="password" name="password" class="form-control" placeholder="Confirm password"><br><br>
 				<input type="submit" name="register" value="Signup" class="btn btn-primary my-3 px-5">
 
 				I have an account.<a href="./index.php"> Click here to Login</a>

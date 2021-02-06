@@ -15,97 +15,7 @@ if ($email == null) {
 	<link rel="stylesheet" type="text/css" href="lib/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/animate/animate.min.css">
 	<link rel="stylesheet" type="text/css" href="lib/font-awesome/css/font-awesome.min.css">
-	<style>
-		.nav-hieght{
-			height: 91.2vh;
-		}
-		a{
-			color: white;
-			font-family: arial, sans-serif;
-		}
-		a:hover{
-		color: dodgerblue;
-		text-decoration: none;
-		transition: all 0.5s;
-		background-color: white;
-		border-radius: 1px;
-		}
-		li:hover{
-		border-radius: 2px;
-		}
-		.dashboard-bg{
-			background-color: lightgrey;
-		}
-
-
-		 body {
-      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-   }
-   * {
-      box-sizing: border-box;
-   }
-   .openChatBtn {
-      background-color: rgb(255, 255, 255);
-      color: black;
-      padding: 16px 16px;
-      border: none;
-      /*font-weight: 500;
-      font-size: 18px;*/
-      cursor: pointer;
-      opacity: 0.8;
-      position: fixed;
-      bottom: 100px;
-      right: 40px;
-      border-radius: 50%;
-      width: 100px;
-   }
-   .openChat {
-      display: none;
-      position: fixed;
-      bottom: 0;
-      right: 15px;
-      border: 3px solid dodgerblue;
-      z-index: 9;
-   }
-   .form {
-      max-width: 300px;
-      padding: 10px;
-      background-color: white;
-   }
-   .form textarea {
-      width: 100%;
-      font-size: 18px;
-      padding: 15px;
-      margin: 5px 0 22px 0;
-      border: none;
-      font-weight: 500;
-      background: #d5e7ff;
-      color: rgb(0, 0, 0);
-      resize: none;
-      min-height: 200px;
-   }
-   .form textarea:focus {
-      background-color: rgb(219, 255, 252);
-      outline: none;
-   }
-   /*form .btn {
-      background-color: dodgerblue;
-      color: white;
-      padding: 16px 20px;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      width: 100%;
-      margin-bottom: 10px;
-      opacity: 0.8;
-   }*/
-   .form .close {
-      background-color: red;
-   }
-   .form .btn:hover, .openChatBtn:hover {
-      opacity: 1;
-   }
-	</style>
+	<link rel="stylesheet" type="text/css" href="lib/msgcss.css">
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/popper.min.js"></script> 
@@ -122,46 +32,51 @@ if ($email == null) {
 				</div>
 			</div>
 
-		<div class="col-md-12 container-fluid bg-white pb-5">
+		<div class="col-md-12 container-fluid bg-white">
 			<div class="row">
 				<div class="container">
 
 				<div class="row">
 				<div class="col-md-6 text-center">
 					<a href="#" class="btn btn-warning" data-toggle="modal" data-target="#myModal"><i class="fa fa-plus-circle fa-1x"></i> Post your boarding house</a>
+
+					<a href="myHome.php?email=<?php echo $_SESSION['email']?>" class="btn btn-success"><i class="fa fa-home fa-1x"></i> My boarding house</a>
 				</div>
 
 				<div class="col-md-6 py-2 text-center">
-						<span class="py-2"><!-- <i class="fa fa-user-circle"></i> -->  <?php /*echo $_SESSION['email'];*/ ?></span> <span id="notify"></span>
-						<a href="#" class="ml-3 btn btn-primary mt-2"><i class="fa fa-user-circle"></i> My Account </a>
-						<a href="Logout.php?action=out" class="btn btn-danger ml-3 mt-2"><i class="fa fa-sign-out fa-1x"></i> Logout</a>
+					<span class="ml-3 mt-2 mr-2"><i class="fa fa-user-circle"></i> <?php echo $_SESSION['fullname']; ?></span>
+						<span id="notify" onclick="redirectToMessages()"></span>
+					<a href="Logout.php?action=out" class="btn btn-danger ml-3 mt-2"><i class="fa fa-sign-out fa-1x"></i> Logout</a>
 				</div>
 
 				</div>
 
 				</div>
 				
-				<h5 class="col-md-12 mt-2 text-center text-uppercase">Available Boarding houses</h5>
+				<h5 class="col-md-12 mt-2 text-center text-uppercase">Look for Boarding houses from the list below</h5>
 				<div class="col-md-12 mt-2">
 					
 				</div>
 
-					<div class="card mt-5 col-md-12">
+					<div class="card mt-2 col-md-12">
 						
-						<div class="card-header">
-								<form class="col-md-6 offset-md-6">
+						<div class="card-header row">
+							<div class="col-md-6">
+								<p id="msg123" class="bg-danger text-center text-white"></p>
+								<p id="msg1234" class="bg-success text-center text-white"></p>
+							</div>
+								<form class="col-md-6">
 								<div class="input-group">
 								<input type="text" name="search" id="search" placeholder="Search By Boarding House name or By Owner name" class="form-control" onkeyup="searchHouse(this.value)">
 								<!-- <button class="btn btn-primary"><i class="fa fa-search"></i> Search</button> -->
 								</div>
 								</form>
 						</div>
-						<!-- <p id="test">hello</p>
-						<p id="test1">hello</p> -->
+						 
 
 						<div class="card-body">
 							<div class="table-responsive">
-								<table class="table table-striped table-hover col-md-12">
+								<table class="table table-striped table-hover col-md-12 rounded">
 								<thead>
 									<tr>
 										<th>Hostel Name</th>
@@ -257,7 +172,29 @@ if ($email == null) {
     </div>
   </div>
 
-	<!-- End of add boarding house modal --> 
+<button class="btn btn-white" data-toggle="modal" data-target="#bookedRoom" id="booked"></button>
+	<!-- End of Booked boarding house modal --> 
+
+	 <!-- The Modal -->
+  <div class="modal fade" id="bookedRoom">
+    <div class="modal-dialog modal-lg rounded-0">
+      <div class="modal-content">
+      
+        <!-- Modal Header -->
+        <div class="modal-header">
+          <h4 class="modal-title">Boarding house Details</h4>
+          <button type="button" class="close text-danger" data-dismiss="modal">&times;</button>
+        </div>
+        
+        <!-- Modal body -->
+        <div class="modal-body">
+			<p class="py-5" id="bhDetails"></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+	<!-- End of add boarding house modal -->
 
 
 
@@ -266,14 +203,14 @@ if ($email == null) {
 <div class="openChat rounded">
 <div class="form">
 <div class="row">
-	<h5 class="col-md-6">Message <i class="fa fa-comment"></i></h5>
+	<h6 class="col-md-6">Send a message</h6>
 	<a href="#!" class="col-md-4 ml-4" onclick="closeForm()"><i class="fa fa-close fa-2x text-danger ml-5"></i></a>
 </div>
-<label>Name</label>
-<div class="input-group">
-	 <i class="fa fa-user-circle fa-2x mr-2"></i> <input type="text" name="email" id="email" class="form-control">
+<!-- <i class="fa fa-user-circle fa-1x mr-4"></i>To : <span id="nameTo" class="py-2">hello</span> -->
+<div class="input-group" style="display: none;">
+	 <i class="fa fa-envelope fa-2x mr-2"></i> <input type="text" name="email" id="email" class="form-control">
 </div>
-<label for="msg">Message</label>
+<!-- <label for="msg">Message</label> -->
 <textarea placeholder="Type message.." name="msg" id="text" required></textarea>
 <div class="row">
 <button type="submit" name="send_message" class="btn btn-primary col-md-10 ml-4" onclick="sendText()" data-dismiss="modal">Send <i class="fa fa-paper-plane"></i></button>
@@ -286,22 +223,54 @@ if ($email == null) {
 <script>
 setInterval(function(){
 	showNotify();
-	/*loadTable();*/
-}, 1000);
+	$('#posts').load("posts.php");
+}, 3000);
+
+setInterval(function() {
+	$('#msg123').load('msg123.txt');
+}, 10000);
+
 
 function reserveSpace(space){
 	let xhttp = new XMLHttpRequest();
 
 	xhttp.onreadystatechange = function(){
 		if (this.readyState == 4 && this.status == 200) {
-			alert(this.responseText);
+			document.getElementById('msg123').innerHTML = "<span class='py-3'>"+this.responseText+"</span>";
 		}
 	};
 	xhttp.open("POST", "book.php", true);
 	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 	xhttp.send("house="+space);
 
-	
+
+	$('#posts').load("posts.php");
+
+
+}
+
+function Cancel(close){
+	let xhttp = new XMLHttpRequest();
+
+	xhttp.onreadystatechange = function(){
+		if (this.readyState == 4 && this.status == 200) {
+			document.getElementById('msg123').innerHTML = "<span class='py-3'>"+this.responseText+"</span>";
+		}
+	};
+	xhttp.open("POST", "cancel.php", true);
+	xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	xhttp.send("close="+close);
+
+
+	$('#posts').load("posts.php");
+
+
+}
+
+function redirectToMessages(){
+	let user = "<?php echo $_SESSION['email']; ?>";
+
+	window.location.href = "http://localhost/StudentBoardingHouseReservetionSystem/messages.php?email="+user;
 }
 </script>
 

@@ -4,7 +4,7 @@ require 'conn.php';
 if (isset($_GET['search'])) {
 	$search = $_GET['search'];
 
-	$posts = mysqli_query($con, "SELECT * FROM house WHERE house_name LIKE '%$search%' OR owner LIKE '%$search%'");
+	$posts = mysqli_query($con, "SELECT * FROM house JOIN users ON house.owner=users.email WHERE house_name LIKE '%$search%' OR owner LIKE '%$search%' OR fullname LIKE '%$search%'");
 
 	
 if (mysqli_num_rows($posts) == 0) {
@@ -14,9 +14,12 @@ if (mysqli_num_rows($posts) == 0) {
 	echo '<tr>
 		<td><i class="fa fa-institution"></i>'.$row['house_name'].'</td>
 		<td><img src="./photos/'.$row['photo1'].'" class="img-responsive" width="100" width="100"></td>
-		<td><i class="fa fa-bed"></i> '.$row['capacity'].' Remaining</td>
-		<td><i class="fa fa-user-circle"></i> '.$row['owner'].'</td>
-		<td>
+		<td><i class="fa fa-bed"></i> '.$row['capacity'].' Remaining</td>';
+		$name = mysqli_query($con, "SELECT fullname FROM users WHERE email = '$row[owner]'");
+		$fname = mysqli_fetch_array($name);
+		echo '<td><i class="fa fa-user-circle"></i> '.$fname['fullname'].'</td>
+			<td>';
+		echo'<td>
 			<button class="btn btn-primary" value="'.$row['owner'].'" onclick="openForm(this.value)"><i class="fa fa-comments"></i> Massage</button>
 		</td>
 		<td>

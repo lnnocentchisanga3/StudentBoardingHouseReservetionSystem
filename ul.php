@@ -1,0 +1,1 @@
+<ul class="navbar-nav" id="messagesAll"></ul>
