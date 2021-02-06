@@ -41,7 +41,7 @@ CREATE TABLE IF NOT EXISTS `book` (
 --
 
 INSERT INTO `book` (`bid`, `userid`, `owner`) VALUES
-(74, 'lnnocentchisanga3@gmail.com', 'me@mail.com'),
+(74, '123@gmail.com', 'me@mail.com'),
 (76, 'me@mail.com', 'me@mail.com'),
 (75, 'admin@mail.com', 'me@mail.com');
 
@@ -92,11 +92,11 @@ CREATE TABLE IF NOT EXISTS `message` (
 
 INSERT INTO `message` (`mid`, `from_person`, `to_person`, `message`) VALUES
 (26, 'me@mail.com', 'admin@mail.com', 'hello......'),
-(25, 'admin@mail.com', 'lnnocentchisanga3@gmail.com', 'i am fine and how are you?'),
-(27, 'me@mail.com', 'lnnocentchisanga3@gmail.com', 'hai'),
-(28, 'lnnocentchisanga3@gmail.com', 'me@mail.com', 'hey....'),
-(29, 'me@mail.com', 'lnnocentchisanga3@gmail.com', 'how are you?'),
-(12, 'lnnocentchisanga3@gmail.com', 'admin@mail.com', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
+(25, 'admin@mail.com', '123@gmail.com', 'i am fine and how are you?'),
+(27, 'me@mail.com', '123@gmail.com', 'hai'),
+(28, '123@gmail.com', 'me@mail.com', 'hey....'),
+(29, 'me@mail.com', '123@gmail.com', 'how are you?'),
+(12, '123@gmail.com', 'admin@mail.com', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod\n  tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,\n  quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo\n  consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse\n  cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non\n  proident, sunt in culpa qui officia deserunt mollit anim id est laborum.');
 
 -- --------------------------------------------------------
 
@@ -119,9 +119,9 @@ CREATE TABLE IF NOT EXISTS `users` (
 --
 
 INSERT INTO `users` (`userid`, `email`, `password`, `photo`, `fullname`) VALUES
-(1, 'admin@mail.com', '123', '', 'Chisanga Innocent'),
-(2, 'lnnocentchisanga3@gmail.com', '123', '', 'Maluine jr'),
-(3, 'me@mail.com', '123', '', 'chisanga innocent');
+(1, 'admin@mail.com', '123', '', 'admin1'),
+(2, '123@gmail.com', '123', '', 'hello'),
+(3, 'me@mail.com', '123', '', 'admin1');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
