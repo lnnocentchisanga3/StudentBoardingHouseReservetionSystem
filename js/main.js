@@ -115,3 +115,128 @@
 	});
 
 })(jQuery);
+
+/*message box*/
+
+document .querySelector(".openChatBtn") .addEventListener("click", openForm);
+   document.querySelector(".close").addEventListener("click", closeForm);
+   function openForm(str) {
+      document.querySelector(".openChat").style.display = "block";
+
+      document.getElementById('email').value = str;
+   }
+   function closeForm() {
+      document.querySelector(".openChat").style.display = "none";
+}
+/*End Message box*/
+
+
+/*BH Details*/
+
+function viewDetails(anchor)
+{
+	var xhttp;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("bhDetails").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "getBhDetails.php?email="+anchor, true);
+    xhttp.send();
+}
+
+/*End BH Details*/
+
+/*Search BH*/
+
+function searchHouse(str)
+ {
+	/*let search = document.getElementById('search').value;*/
+	document.getElementById('posts').innerHTML = str;
+
+	/*if (search == null) {
+		document.getElementById('test').innerHTML = "";
+	}else{*/
+
+		var xhttp;
+
+		xhttp = new XMLHttpRequest();
+
+		xhttp.onreadystatechange = function(){
+
+			if (this.readyState == 4 && this.status == 200) {
+				document.getElementById('posts').innerHTML = this.responseText;
+			}
+		};
+
+		xhttp.open("GET" , "getSearch.php?search="+str, true);
+		xhttp.send();
+	/*}*/
+
+}
+
+/*End Search*/
+
+
+/*Notification*/
+
+function showNotify() 
+{
+  var xhttp;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200) {
+         document.getElementById("notify").innerHTML = this.responseText;
+      }
+    };
+    xhttp.open("GET", "getNotifyAll.php?query", true);
+    xhttp.send();
+}
+
+/*End Notification*/
+
+/*Message sending*/
+
+function sendText() {
+	let text = document.getElementById('text').value;
+	let email = document.getElementById('email').value;
+
+	var xhttp;
+
+    xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function(){
+      if (this.readyState == 4 && this.status == 200) {
+         alert(this.responseText);
+      }
+    };
+   xhttp.open("POST","sendMsg.php", true);
+    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhttp.send("email="+email+"&msg="+text);
+
+    document.getElementById('text').value = "";
+    document.querySelector(".openChat").style.display = "none";
+}
+
+/*Message sending end*/
+
+/*Table*/
+
+function loadTable() 
+{
+	let xhttp;
+
+	xhttp = new XMLHttpRequest();
+	xhttp.onreadystatechange = function() {
+	if (this.readyState == 4 && this.status == 200) {
+		document.getElementById('posts').innerHTML = this.responseText;
+	}	
+	};
+
+	xhttp.open("GET", "posts.php", true);
+	xhttp.send();
+}
+
+/*End Table*/

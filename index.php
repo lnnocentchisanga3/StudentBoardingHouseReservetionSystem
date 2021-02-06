@@ -81,12 +81,12 @@
 		<div class="col-md-2"></div>
 		<div class="col-md-8 mt-5">
 			<h3 class="text-center text-uppercase text-white py-3">Student Boarding House Reservetion System <br>Login</h3>
-			<form method="POST" action="dashboard.php" class="bg-white col-md-8 offset-md-2 rounded">
+			<form method="POST" action="auth.php" class="bg-white col-md-8 offset-md-2 rounded">
 				<label class="mt-5">Email</label><br>
 				<input type="email" name="email" class="form-control" placeholder="email"><br>
 				<label>password</label><br>
 				<input type="password" name="password" class="form-control" placeholder="password"><br><br>
-				<input type="submit" name="send" value="login" class="btn btn-primary my-3 px-5">
+				<input type="submit" name="login" value="login" class="btn btn-primary my-3 px-5">
 
 				I don't have an account.<a href="./signup.php"> Click here to Signup</a>
 			</form>
